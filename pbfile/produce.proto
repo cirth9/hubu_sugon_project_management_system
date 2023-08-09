@@ -1,5 +1,8 @@
 syntax = "proto3";
 option go_package="../service";
+
+import "google/protobuf/any.proto";
+
 package service;
 
 message Product_Request{
@@ -7,7 +10,12 @@ message Product_Request{
 }
 
 message Produce_Response{
-  int32 prod_stock=2;
+  int32 prod_stock=1;
+  google.protobuf.Any data=2;
+}
+
+message Test{
+  string test=1;
 }
 
 service prodService{

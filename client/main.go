@@ -70,5 +70,5 @@ func main() {
 	if err != nil {
 		log.Fatal("response failed ", err)
 	}
-	fmt.Printf("%#v", resp)
+	fmt.Printf("\n%v %v", resp.ProdStock, string(resp.Data.Value))
 }

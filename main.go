@@ -73,7 +73,6 @@ func main() {
 	}
 	fmt.Printf("Test")
 	rpcServer := grpc.NewServer(grpc.Creds(newTLS), grpc.UnaryInterceptor(interceptor))
-
 	service.RegisterProdServiceServer(rpcServer, &service.ProduceService{})
 	listener, err := net.Listen("tcp", ":8002")
 	if err != nil {
