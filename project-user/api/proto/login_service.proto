@@ -1,0 +1,92 @@
+syntax = "proto3";
+package login.service.v1;
+option go_package = "project-user/pkg/service/login.service.v1";
+
+
+message CaptchaMessage {
+  string mobile = 1;
+}
+message CaptchaResponse{
+  string code = 1;
+}
+
+message RegisterMessage {
+  string email = 1;
+  string name = 2;
+  string password = 3;
+  string mobile = 4;
+  string captcha = 5;
+}
+message RegisterResponse {}
+
+message LoginMessage {
+  string account = 1;
+  string password = 2;
+  string token = 3;
+  string ip = 4;
+}
+message LoginResponse{
+  MemberMessage member = 1;
+  repeated OrganizationMessage organizationList = 2;
+  TokenMessage tokenList = 3;
+}
+message MemberMessage {
+  int64 id = 1;
+  string name = 2;
+  string mobile = 3;
+  string realname = 4;
+  string account = 5;
+  int32 status = 6;
+  string lastLoginTime = 7;
+  string address = 8;
+  int32 province = 9;
+  int32 city = 10;
+  int32 area = 11;
+  string email = 12;
+  string code = 13;
+  string createTime = 14;
+  string organizationCode = 15;
+  string avatar = 16;
+}
+message MemberMessageList {
+  repeated MemberMessage list = 1;
+}
+message OrganizationMessage {
+  int64 id = 1;
+  string name = 2;
+  string avatar = 3;
+  string description = 4;
+  int64 memberId = 5;
+  string createTime = 6;
+  int32 personal = 7;
+  string address = 8;
+  int32 province = 9;
+  int32 city = 10;
+  int32 area = 11;
+  string code = 12;
+  string ownerCode = 13;
+}
+message TokenMessage{
+  string accessToken = 1;
+  string refreshToken = 2;
+  string tokenType = 3;
+  int64 accessTokenExp = 4;
+}
+
+message UserMessage{
+  int64 memId = 1;
+  repeated int64 mIds = 2;
+}
+message OrgListResponse{
+  repeated OrganizationMessage organizationList = 1;
+}
+
+service LoginService {
+  rpc GetCaptcha(CaptchaMessage) returns (CaptchaResponse) {}
+  rpc Register(RegisterMessage) returns (RegisterResponse) {}
+  rpc Login(LoginMessage) returns (LoginResponse) {}
+  rpc TokenVerify(LoginMessage) returns (LoginResponse) {}
+  rpc MyOrgList(UserMessage) returns (OrgListResponse) {}
+  rpc FindMemInfoById(UserMessage) returns (MemberMessage) {}
+  rpc FindMemInfoByIds(UserMessage) returns (MemberMessageList) {}
+}

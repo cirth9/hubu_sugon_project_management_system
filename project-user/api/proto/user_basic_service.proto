@@ -1,0 +1,28 @@
+syntax = "proto3";
+package user_basic.service.v1;
+option go_package = "project-user/pkg/service/user_basic.service.v1";
+
+
+message MemberMessage {
+  int64 id = 1;
+  string name = 2;
+  string mobile = 3;
+  string realname = 4;
+  string account = 5;
+  int32 status = 6;
+  string lastLoginTime = 7;
+  string address = 8;
+  int32 province = 9;
+  int32 city = 10;
+  int32 area = 11;
+  string email = 12;
+  string code = 13;
+  string createTime = 14;
+  string organizationCode = 15;
+  string avatar = 16;
+}
+
+
+service UserBasicService {
+  rpc  UpdateUserInfo(MemberMessage) returns (MemberMessage) {}
+}
