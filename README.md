@@ -18,4 +18,4 @@
 5、mysql  实现具体逻辑。实现RBAC鉴权设计模型等。
 
 6、使用 redis  对验证码进行缓存。利用 redis  过期机制实现验证码定时过期。对用户的查询进行短时间缓存来加快数据查询，减轻数据库压力
-![project_management_system/%7BBCF554A3-AA89-40b8-B931-355A71B9E834%7D.png]()
+![./%7BBCF554A3-AA89-40b8-B931-355A71B9E834%7D.png]()
