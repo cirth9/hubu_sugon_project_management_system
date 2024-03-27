@@ -1,0 +1,13 @@
+server:
+  name: "project-api"
+  addr: "0.0.0.0:80"
+zap:
+  debugFileName: "/msproject/project-api/logs/debug/project-debug.log"
+  infoFileName: "/msproject/project-api/logs/info/project-info.log"
+  warnFileName: "/msproject/project-api/logs/error/project-error.log"
+  maxSize: 500,
+  maxAge: 28,
+  MaxBackups: 3
+etcd:
+  addrs:
+    - "127.0.0.1:2379"

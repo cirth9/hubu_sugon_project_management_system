@@ -1,0 +1,15 @@
+server:
+  name: "project-api"
+  addr: "0.0.0.0:80"
+zap:
+  debugFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-debug.log"
+  infoFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-info.log"
+  warnFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-error.log"
+  maxSize: 500,
+  maxAge: 28,
+  MaxBackups: 3
+etcd:
+  addrs:
+    - "127.0.0.1:2379"
+jaeger:
+  endpoints: "http://192.168.1.102:14268/api/traces"
