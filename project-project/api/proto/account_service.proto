@@ -1,0 +1,59 @@
+syntax = "proto3";
+package account.service.v1;
+option go_package = "project-project/pkg/service/account.service.v1";
+
+message AccountReqMessage {
+  int64 memberId = 1;
+  string projectCode = 2;
+  int64 page = 3;
+  int64 pageSize = 4;
+  string organizationCode = 5;
+  int32 searchType = 6;
+  string departmentCode = 7;
+}
+
+message MemberAccount{
+  int64 id = 1;
+  string code = 2;
+  string OrganizationCode = 3;
+  string DepartmentCode = 4;
+  string Authorize = 5;
+  int32 isOwner = 6;
+  string name = 7;
+  string mobile = 8;
+  string email = 9;
+  string createTime = 10;
+  string lastLoginTime = 11;
+  int32 status = 12;
+  string Description = 13;
+  string Avatar = 14;
+  string Position = 15;
+  string Department = 16;
+  string MembarAccountCode = 17;
+  string Departments = 18;
+  string StatusText = 19;
+  repeated string AuthorizeArr = 20;
+}
+message ProjectAuth{
+  int64 id = 1;
+  string OrganizationCode = 2;
+  string Title = 3;
+  string CreateAt = 4;
+  int32 Sort = 5;
+  int32 status = 6;
+  string desc = 7;
+  int64 CreateBy = 8;
+  int32 IsDefault = 9;
+  string Type = 10;
+  int32 CanDelete = 11;
+}
+
+message AccountResponse{
+  int64 total = 1;
+  repeated MemberAccount accountList = 2;
+  repeated ProjectAuth authList = 3;
+}
+
+service AccountService {
+  rpc Account(AccountReqMessage) returns (AccountResponse) {}
+}

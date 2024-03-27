@@ -1,0 +1,59 @@
+server:
+  name: "project-project"
+  addr: "127.0.0.1:8084"
+zap:
+  debugFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-debug.log"
+  infoFileName: "D:\\项目实战\\project_management_system\\logs\\error\\menu-info.log"
+  warnFileName: "D:\\项目实战\\project_management_system\\logs\\info\\menu-error.log"
+  maxSize: 500,
+  maxAge: 28,
+  MaxBackups: 3
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  db: 0
+grpc:
+  etcdAddr: "127.0.0.1:8884"
+  addr: "127.0.0.1:8884"
+  name: "project"
+  version: "1.0.0"
+  weight: 2
+etcd:
+  addrs:
+    - "127.0.0.1:2379"
+mysql:
+  username: root
+  password: qq31415926535--
+  host: 127.0.0.1
+  port: 3306
+  db: msproject
+db:
+  separation: true
+  master:
+    name: master
+    username: root
+    password: qq31415926535--
+    host: 127.0.0.1
+    port: 3306
+    db: msproject
+  slave:
+    - username: root
+      password: qq31415926535--
+      host: 127.0.0.1
+      port: 3306
+      db: msproject
+      name: slave1
+    - username: root
+      password: qq31415926535--
+      host: 127.0.0.1
+      port: 3306
+      db: msproject
+      name: slave2
+jwt:
+  accessExp: 7
+  refreshExp: 14
+  accessSecret: msproject
+  refreshSecret: ms_project
+jaeger:
+  endpoints: "http://192.168.1.102:14268/api/traces"

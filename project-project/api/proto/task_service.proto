@@ -1,0 +1,293 @@
+syntax = "proto3";
+package task.service.v1;
+option go_package = "project-project/pkg/service/task.service.v1";
+
+message TaskReqMessage {
+  int64 memberId = 1;
+  string projectCode = 2;
+  int64 page = 3;
+  int64 pageSize = 4;
+  string stageCode = 5;
+  string name = 6;
+  string assignTo = 7;
+  int32 taskType = 8;
+  int32 type = 9;
+  string preTaskCode = 10;
+  string nextTaskCode = 11;
+  string toStageCode = 12;
+  string taskCode = 13;
+  int32 all = 14;
+  int32 comment = 15;
+  string content = 16;
+  int32 num = 17;
+  int64 beginTime = 18;
+  string commentContent = 19;
+  repeated string Mentions = 20;
+}
+
+message TaskStagesMessage{
+  string code = 1;
+  string name = 2;
+  string projectCode = 3;
+  int32 sort = 4;
+  string description = 5;
+  string createTime = 6;
+  int32 deleted = 7;
+  int32 id = 8;
+}
+
+message TaskStagesResponse{
+  int64 total = 1;
+  repeated TaskStagesMessage list = 2;
+}
+
+message MemberProjectMessage{
+  string name = 1;
+  string avatar = 2;
+  int64 memberCode = 3;
+  string code = 4;
+  string email = 5;
+  int32 isOwner = 6;
+}
+message MemberProjectResponse{
+  int64 total = 1;
+  repeated MemberProjectMessage list = 2;
+}
+
+message TaskMessage{
+  int64 Id  = 1;
+  string ProjectCode  = 2;
+  string Name  = 3;
+  int32 Pri  = 4;
+  string ExecuteStatus  = 5;
+  string Description  = 6;
+  string CreateBy  = 7;
+  string DoneBy  = 8;
+  string DoneTime  = 9;
+  string CreateTime  = 10;
+  string AssignTo  = 11;
+  int32 Deleted  = 12;
+  string StageCode  = 13;
+  string TaskTag  = 14;
+  int32 Done  = 15;
+  string BeginTime  = 16;
+  string EndTime  = 17;
+  string RemindTime  = 18;
+  string Pcode  = 19;
+  int32 Sort  = 20;
+  int32 Like  = 21;
+  int32 Star  = 22;
+  string DeletedTime  = 23;
+  int32 Private  = 24;
+  int32 IdNum  = 25;
+  string Path  = 26;
+  int32 Schedule  = 27;
+  string VersionCode  = 28;
+  string FeaturesCode  = 29;
+  int32 WorkTime  = 30;
+  int32 Status  = 31;
+  string code = 32;
+  int32 canRead = 33;
+  ExecutorMessage executor = 34;
+  string projectName = 35;
+  string stageName = 36;
+  string  priText = 37;
+  string statusText = 38;
+}
+
+message ExecutorMessage {
+  string Name = 1;
+  string Avatar = 2;
+  string code = 3;
+}
+message TaskListResponse{
+  repeated TaskMessage list = 1;
+}
+message TaskSortResponse{}
+
+message MyTaskMessage{
+  int64 Id  = 1;
+  string ProjectCode  = 2;
+  string Name  = 3;
+  int32 Pri  = 4;
+  string ExecuteStatus  = 5;
+  string Description  = 6;
+  string CreateBy  = 7;
+  string DoneBy  = 8;
+  string DoneTime  = 9;
+  string CreateTime  = 10;
+  string AssignTo  = 11;
+  int32 Deleted  = 12;
+  string StageCode  = 13;
+  string TaskTag  = 14;
+  int32 Done  = 15;
+  string BeginTime  = 16;
+  string EndTime  = 17;
+  string RemindTime  = 18;
+  string Pcode  = 19;
+  int32 Sort  = 20;
+  int32 Like  = 21;
+  int32 Star  = 22;
+  string DeletedTime  = 23;
+  int32 Private  = 24;
+  int32 IdNum  = 25;
+  string Path  = 26;
+  int32 Schedule  = 27;
+  string VersionCode  = 28;
+  string FeaturesCode  = 29;
+  int32 WorkTime  = 30;
+  int32 Status  = 31;
+  string code = 32;
+  string Cover = 33;
+  string AccessControlType = 34;
+  string WhiteList = 35;
+  int32 Order =36;
+  string TemplateCode = 37;
+  string OrganizationCode = 38;
+  string Prefix = 39;
+  int32 OpenPrefix = 40;
+  int32 Archive = 41;
+  int64 ArchiveTime = 42;
+  int32 OpenBeginTime = 43;
+  int32 OpenTaskPrivate = 44;
+  string TaskBoardTheme = 45;
+  int32 AutoUpdateSchedule = 46;
+  ExecutorMessage executor = 47;
+  string projectName = 48;
+}
+message MyTaskListResponse{
+  repeated MyTaskMessage list = 1;
+  int64  total = 2;
+}
+message TaskMemberMessage{
+  int64 id = 1;
+  string name = 2;
+  string avatar = 3;
+  string code = 4;
+  string membarAccountCode = 5;
+  int32 isExecutor = 6;
+  int32 isOwner = 7;
+}
+
+message TaskMemberList{
+  repeated TaskMemberMessage list = 1;
+  int64  total = 2;
+}
+
+message TaskLog {
+  int64 id = 1;
+  string MemberCode = 2;
+  string Content = 3;
+  string remark = 4;
+  string Type = 5;
+  string CreateTime = 6;
+  string SourceCode = 7;
+  string ActionType = 8;
+  string ToMemberCode = 9;
+  int32 IsComment = 10;
+  string ProjectCode = 11;
+  string Icon = 12;
+  int32 IsRobot = 13;
+  Member member = 14;
+}
+message Member{
+  int64 id = 1;
+  string name = 2;
+  string avatar = 3;
+  string code = 4;
+}
+message TaskLogList{
+  repeated TaskLog list = 1;
+  int64  total = 2;
+}
+
+message TaskWorkTime {
+  int64 id = 1;
+  string memberCode = 2;
+  string createTime = 3;
+  string content = 4;
+  string beginTime = 5;
+  int32  num = 6;
+  string code = 7;
+  Member member = 8;
+}
+
+message TaskWorkTimeResponse {
+  repeated TaskWorkTime list = 1;
+  int64 total = 2;
+}
+message SaveTaskWorkTimeResponse {
+}
+
+message TaskFileReqMessage{
+  string pathName = 1;
+  string fileName = 2;
+  string extension = 3;
+  int64 size = 4;
+  string projectCode = 5;
+  string taskCode = 6;
+  string organizationCode = 7;
+  string fileUrl = 8;
+  string fileType = 9;
+  int64 memberId = 10;
+}
+message TaskFileResponse{}
+
+message TaskSourceMessage{
+  int64  id = 1;
+  string code = 2;
+  string sourceType = 3;
+  string sourceCode = 4;
+  string linkType = 5;
+  string linkCode = 6;
+  string OrganizationCode = 7;
+  string createBy = 8;
+  string createTime = 9;
+  int32 sort = 10;
+  string title = 11;
+  SourceDetail sourceDetail = 12;
+}
+message SourceDetail {
+  int64  id = 1;
+  string  code = 2;
+  string pathName = 3;
+  string title = 4;
+  string Extension = 5;
+  int32 size = 6;
+  string ObjectType = 7;
+  string OrganizationCode = 8;
+  string  TaskCode = 9;
+  string projectCode = 10;
+  string createBy = 11;
+  string createTime = 12;
+  int32 downloads = 13;
+  string Extra = 14;
+  int32 Deleted = 15;
+  string FileUrl = 16;
+  string FileType = 17;
+  string deletedTime = 18;
+  string ProjectName = 19;
+  string FullName = 20;
+}
+message TaskSourceResponse{
+  repeated TaskSourceMessage list = 1;
+}
+message CreateCommentResponse{
+
+}
+service TaskService {
+  rpc TaskStages(TaskReqMessage) returns (TaskStagesResponse) {}
+  rpc MemberProjectList(TaskReqMessage) returns (MemberProjectResponse){}
+  rpc TaskList(TaskReqMessage) returns (TaskListResponse){}
+  rpc SaveTask(TaskReqMessage) returns(TaskMessage){}
+  rpc TaskSort(TaskReqMessage) returns (TaskSortResponse){}
+  rpc MyTaskList(TaskReqMessage) returns (MyTaskListResponse){}
+  rpc ReadTask(TaskReqMessage) returns (TaskMessage){}
+  rpc ListTaskMember(TaskReqMessage) returns(TaskMemberList){}
+  rpc TaskLog(TaskReqMessage) returns(TaskLogList){}
+  rpc TaskWorkTimeList(TaskReqMessage) returns(TaskWorkTimeResponse){}
+  rpc SaveTaskWorkTime(TaskReqMessage) returns(SaveTaskWorkTimeResponse){}
+  rpc SaveTaskFile(TaskFileReqMessage) returns(TaskFileResponse){}
+  rpc TaskSources(TaskReqMessage) returns(TaskSourceResponse){}
+  rpc CreateComment(TaskReqMessage) returns(CreateCommentResponse){}
+}

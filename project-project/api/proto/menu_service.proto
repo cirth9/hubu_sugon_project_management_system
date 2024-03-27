@@ -1,0 +1,36 @@
+syntax = "proto3";
+package menu.service.v1;
+option go_package = "project-project/pkg/service/menu.service.v1";
+
+message MenuReqMessage {
+}
+
+
+message MenuMessage {
+  int64  id = 1;
+  int64 pid = 2;
+  string title = 3;
+  string icon = 4;
+  string url = 5;
+  string filePath = 6;
+  string params = 7;
+  string node = 8;
+  int32 sort = 9;
+  int32 status = 10;
+  int64 createBy = 11;
+  int32 isInner = 12;
+  string values = 13;
+  int32 showSlider = 14;
+  string statusText = 15;
+  string innerText  = 16;
+  string fullUrl    = 17;
+  repeated MenuMessage children = 18;
+}
+
+
+message MenuResponseMessage{
+  repeated MenuMessage list = 1;
+}
+service MenuService {
+  rpc MenuList(MenuReqMessage) returns(MenuResponseMessage){}
+}

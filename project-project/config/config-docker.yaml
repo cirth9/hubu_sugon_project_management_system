@@ -1,0 +1,29 @@
+server:
+  name: "menu-user"
+  addr: "0.0.0.0:8080"
+zap:
+  debugFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-debug.log"
+  infoFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-info.log"
+  warnFileName: "D:\\项目实战\\project_management_system\\logs\\debug\\menu-error.log"
+  maxSize: 500,
+  maxAge: 28,
+  MaxBackups: 3
+redis:
+  host: "redis6"
+  port: 6379
+  password: ""
+  db: 0
+grpc:
+  addr: "0.0.0.0:8881"
+  name: "user"
+  version: "1.0.0"
+  weight: 2
+etcd:
+  addrs:
+    - "etcd3:2379"
+mysql:
+  username: root
+  password: qq31415926535--
+  host: 127.0.0.1
+  port: 3306
+  db: msproject

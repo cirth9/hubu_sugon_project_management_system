@@ -1,0 +1,33 @@
+syntax = "proto3";
+package department.service.v1;
+option go_package = "project-project/pkg/service/department.service.v1";
+
+message DepartmentReqMessage {
+  int64 memberId = 1;
+  string organizationCode = 2;
+  int64 page = 3;
+  int64 pageSize = 4;
+  string departmentCode = 5;
+  string parentDepartmentCode = 6;
+  string name = 7;
+}
+
+message DepartmentMessage{
+  int64 id = 1;
+  string code = 2;
+  string OrganizationCode = 3;
+  string Name = 4;
+  string createTime = 5;
+  string pcode = 6;
+  string path = 7;
+}
+
+message ListDepartmentMessage{
+  repeated DepartmentMessage list = 1;
+  int64  total = 2;
+}
+service DepartmentService {
+  rpc Save(DepartmentReqMessage) returns(DepartmentMessage){}
+  rpc Read(DepartmentReqMessage) returns(DepartmentMessage){}
+  rpc List(DepartmentReqMessage) returns(ListDepartmentMessage){}
+}

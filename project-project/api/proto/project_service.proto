@@ -1,0 +1,221 @@
+syntax = "proto3";
+package project.service.v1;
+option go_package = "project-project/pkg/service/project.service.v1";
+
+message IndexMessage{
+
+}
+
+message MenuMessage {
+  int64  id = 1;
+  int64 pid = 2;
+  string title = 3;
+  string icon = 4;
+  string url = 5;
+  string filePath = 6;
+  string params = 7;
+  string node = 8;
+  int32 sort = 9;
+  int32 status = 10;
+  int64 createBy = 11;
+  int32 isInner = 12;
+  string values = 13;
+  int32 showSlider = 14;
+  string statusText = 15;
+  string innerText  = 16;
+  string fullUrl    = 17;
+  repeated MenuMessage children = 18;
+}
+
+message IndexResponse{
+  repeated MenuMessage menus = 1;
+}
+
+message ProjectMessage{
+  int64 Id = 1;
+  string Cover = 2;
+  string Name = 3;
+  string Description = 4;
+  string AccessControlType = 5;
+  string WhiteList = 6;
+  int32 Order = 7;
+  int32 Deleted = 8;
+  string TemplateCode = 9;
+  double Schedule = 10;
+  string CreateTime = 11;
+  string OrganizationCode = 12;
+  string DeletedTime = 13;
+  int32 Private = 14;
+  string Prefix = 15;
+  int32 OpenPrefix = 16;
+  int32 Archive = 17;
+  int64 ArchiveTime = 18;
+  int32 OpenBeginTime = 19;
+  int32 OpenTaskPrivate = 20;
+  string TaskBoardTheme = 21;
+  string BeginTime = 22;
+  string EndTime = 23;
+  int32 AutoUpdateSchedule = 24;
+  int64 ProjectCode = 25;
+  int64 MemberCode = 26;
+  string JoinTime  = 27;
+  int64 IsOwner = 28;
+  string Authorize = 29;
+  string code = 30;
+  string ownerName = 31;
+  int32 collected = 32;
+}
+
+message ProjectDetailMessage{
+  string Cover = 2;
+  string Name = 3;
+  string Description = 4;
+  string AccessControlType = 5;
+  string WhiteList = 6;
+  int32 Order = 7;
+  int32 Deleted = 8;
+  string TemplateCode = 9;
+  double Schedule = 10;
+  string CreateTime = 11;
+  string OrganizationCode = 12;
+  string DeletedTime = 13;
+  int32 Private = 14;
+  string Prefix = 15;
+  int32 OpenPrefix = 16;
+  int32 Archive = 17;
+  int64 ArchiveTime = 18;
+  int32 OpenBeginTime = 19;
+  int32 OpenTaskPrivate = 20;
+  string TaskBoardTheme = 21;
+  string BeginTime = 22;
+  string EndTime = 23;
+  int32 AutoUpdateSchedule = 24;
+  string code = 25;
+  string ownerName = 26;
+  int32 collected = 27;
+  string ownerAvatar = 28;
+}
+
+message SaveProjectMessage {
+  int64 Id = 1;
+  string Cover = 2;
+  string Name = 3;
+  string Description = 4;
+  string Code = 5;
+  string CreateTime = 6;
+  string TaskBoardTheme = 7;
+  string OrganizationCode = 8;
+}
+message ProjectRpcMessage{
+  int64 memberId = 1;
+  string memberName = 2;
+  int64 page = 3;
+  int64 pageSize = 4;
+  string selectBy = 5;
+  string organizationCode = 6;
+  int32 viewType = 7;
+  string name = 8;
+  string templateCode = 9;
+  string description = 10;
+  int64 id = 11;
+  string projectCode = 12;
+  bool deleted = 13;
+  string collectType = 14;
+  string taskCode = 15;
+}
+
+message ProjectTemplateMessage{
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  int32 sort = 4;
+  string createTime = 5;
+  string organizationCode = 6;
+  string cover = 7;
+  string memberCode = 8;
+  int32 isSystem = 9;
+  repeated TaskStages taskStages = 10;
+  string code = 11;
+}
+
+message TaskStages{
+  string name = 1;
+}
+
+message ProjectTemplateResponse{
+  repeated ProjectTemplateMessage ptm = 1;
+  int64  Total = 2;
+}
+
+message MyProjectResponse{
+  repeated ProjectMessage pm = 1;
+  int64 total = 2;
+}
+message DeletedProjectResponse{}
+message CollectProjectResponse{}
+message UpdateProjectResponse{}
+
+
+message UpdateProjectMessage{
+  string projectCode = 1;
+  string Cover = 2;
+  string Name = 3;
+  string Description = 4;
+  double Schedule = 5;
+  int32 Private = 6;
+  string Prefix = 7;
+  int32 OpenPrefix = 8;
+  int32 OpenBeginTime = 9;
+  int32 OpenTaskPrivate = 10;
+  string TaskBoardTheme = 11;
+  int32 AutoUpdateSchedule = 12;
+  int64 MemberId = 13;
+}
+message ProjectLogMessage{
+    string Content  = 1;
+    string Remark       = 2;
+    string CreateTime    = 3;
+    string SourceCode    = 4;
+    int32 IsComment       = 5;
+    string ProjectCode   = 6;
+    string ProjectName   =7;
+    string MemberAvatar  =8;
+    string MemberName   =9;
+    string TaskName      = 10;
+}
+message ProjectLogResponse{
+  repeated ProjectLogMessage list = 1;
+  int64 total = 2;
+}
+
+message ProjectNodeMessage{
+  int64 id = 1;
+  string node = 2;
+  string title = 3;
+  string pnode = 4;
+  int32 isLogin = 5;
+  int32 isMenu = 6;
+  int32 isAuth = 7;
+  repeated ProjectNodeMessage children = 8;
+}
+message ProjectNodeResponseMessage {
+  repeated ProjectNodeMessage nodes = 1;
+}
+message FindProjectByMemberIdResponse{
+  ProjectMessage project = 1;
+  bool isMember = 2;
+  bool isOwner = 3;
+}
+service ProjectService {
+  rpc Index(IndexMessage) returns (IndexResponse) {}
+  rpc FindProjectByMemId(ProjectRpcMessage) returns (MyProjectResponse){}
+  rpc FindProjectTemplate(ProjectRpcMessage) returns (ProjectTemplateResponse){}
+  rpc SaveProject(ProjectRpcMessage) returns (SaveProjectMessage){}
+  rpc FindProjectDetail(ProjectRpcMessage) returns (ProjectDetailMessage){}
+  rpc UpdateDeletedProject(ProjectRpcMessage) returns (DeletedProjectResponse){}
+  rpc UpdateCollectProject(ProjectRpcMessage) returns (CollectProjectResponse){}
+  rpc UpdateProject(UpdateProjectMessage) returns (UpdateProjectResponse){}
+  rpc GetLogBySelfProject(ProjectRpcMessage) returns (ProjectLogResponse){}
+  rpc NodeList(ProjectRpcMessage) returns (ProjectNodeResponseMessage){}
+  rpc FindProjectByMemberId(ProjectRpcMessage) returns (FindProjectByMemberIdResponse){}
+}
